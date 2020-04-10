@@ -1,0 +1,12 @@
+package com.vanderkast.blog_server;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+@Configuration
+@EnableJpaRepositories(basePackages = "com.vanderkast.blog_server.database")
+@EnableTransactionManagement
+public class RepositoryConfig {
+
+}

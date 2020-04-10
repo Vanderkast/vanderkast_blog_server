@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+}
+
+group 'com.vanderkast.blog_server'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    def SPRING_BOOT_VERSION = '2.2.6.RELEASE'
+    def SPRING_VERSION = '5.2.5.RELEASE'
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot', version: SPRING_BOOT_VERSION
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: SPRING_BOOT_VERSION
+
+    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: SPRING_BOOT_VERSION
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: SPRING_BOOT_VERSION
+
+    implementation group: 'org.springframework', name: 'spring-core', version: SPRING_VERSION
+    implementation group: 'org.springframework', name: 'spring-beans', version: SPRING_VERSION
+    implementation group: 'org.springframework', name: 'spring-context', version: SPRING_VERSION
+
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
+
+    /** TEST DEPENDENCIES **/
+
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: SPRING_BOOT_VERSION
+    testImplementation group: 'org.springframework', name: 'spring-test', version: SPRING_VERSION
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
