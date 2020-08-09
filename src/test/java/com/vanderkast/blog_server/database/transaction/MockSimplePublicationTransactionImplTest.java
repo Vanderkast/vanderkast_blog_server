@@ -1,7 +1,7 @@
 package com.vanderkast.blog_server.database.transaction;
 
 import com.vanderkast.blog_server.database.dto.SimplePublication;
-import com.vanderkast.blog_server.model.Publication;
+import com.vanderkast.blog_server.mock.MockSimplePublication;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,19 +10,24 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
+@ActiveProfiles("test")
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class SimplePublicationTransactionImplTest {
+public class MockSimplePublicationTransactionImplTest {
     private SimplePublicationTransaction transaction;
 
-    private static SimplePublication simplePublication;
+    private SimplePublication mock;
 
     @TestConfiguration
+    @Profile("test")
     static class Config {
         @Bean
         SimplePublicationTransaction beanSimplePublicationTransaction() {
@@ -32,10 +37,7 @@ public class SimplePublicationTransactionImplTest {
 
     @Before
     public void setUp() {
-        simplePublication = new SimplePublication();
-        simplePublication.setTitle("test title");
-        simplePublication.setContent("test content");
-        simplePublication.setTimestamp(new Date().getTime());
+        mock = MockSimplePublication.get();
     }
 
     @Autowired
@@ -45,12 +47,14 @@ public class SimplePublicationTransactionImplTest {
 
     @Test
     public void complete() {
-        String id = transaction.create(simplePublication);
-        assert id != null;
+        String id = transaction.create(mock);
+        assertNotNull(id);
         SimplePublication test = transaction.getById(id);
-        assert test != null;
-        assert test.getTitle().equals(test.getTitle());
-        assert test.getContent().equals(test.getContent());
-        assert test.getTimestamp().equals(test.getTimestamp());
+        assertNotNull(test);
+        assertEquals(mock.getTitle(), test.getTitle());
+        assertEquals(mock.getContent(),test.getContent());
+        assertEquals(mock.getTimestamp(), test.getTimestamp());
     }
 }
+
+
