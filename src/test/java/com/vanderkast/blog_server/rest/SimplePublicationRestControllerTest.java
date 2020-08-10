@@ -34,10 +34,8 @@ public class SimplePublicationRestControllerTest {
 
     SimplePublication publication = new SimplePublication();
 
-    @RunWith(SpringRunner.class)
-
     @TestConfiguration
-    static class Config {
+    public static class Config {
         @Bean
         SimplePublicationController beanSimplePublicationController() {
             return new SimplePublicationController();

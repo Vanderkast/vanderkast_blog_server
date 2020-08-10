@@ -6,7 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "SIMPLE_PUBLICATION")
+@Table(name = "simple_publication")
 public class SimplePublication implements Publication {
     @Id
     @GeneratedValue(generator="system-uuid")
