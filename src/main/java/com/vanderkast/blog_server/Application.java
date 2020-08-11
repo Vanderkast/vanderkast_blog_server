@@ -11,7 +11,8 @@ import org.springframework.context.annotation.*;
 @SpringBootApplication(scanBasePackages = {
         "com.vanderkast.blog_server.controller",
         "com.vanderkast.blog_server.database.transaction",
-        "com.vanderkast.blog_server.rest"
+        "com.vanderkast.blog_server.rest",
+        "com.vanderkast.blog_server.helper",
 })
 @PropertySource("classpath:application.properties")
 public class Application {

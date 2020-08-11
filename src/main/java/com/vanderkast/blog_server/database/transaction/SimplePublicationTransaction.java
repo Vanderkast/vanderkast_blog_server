@@ -10,5 +10,7 @@ public interface SimplePublicationTransaction {
 
     String create(SimplePublication publication);
 
-    SimplePublication getById(String io);
+    SimplePublication getById(String id);
+
+    void deleteById(String id);
 }

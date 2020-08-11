@@ -29,6 +29,11 @@ public class SimplePublicationTransactionImpl implements SimplePublicationTransa
         return repository.findById(id).orElse(null);
     }
 
+    @Override
+    public void deleteById(String id) {
+        repository.deleteById(id);
+    }
+
     @Autowired
     public void setRepository(SimplePublicationRepository repository) {
         this.repository = repository;

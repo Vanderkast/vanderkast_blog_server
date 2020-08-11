@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Table(name = "simple_publication")
 public class SimplePublication implements Publication {
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
     @Column(name = "timestamp")

@@ -25,10 +25,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(SimplePublicationRestController.class)
+@WebMvcTest(PublicationRestController.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class SimplePublicationRestControllerTest {
+public class PublicationRestControllerTest {
     @Autowired
     MockMvc mockMvc;
 
