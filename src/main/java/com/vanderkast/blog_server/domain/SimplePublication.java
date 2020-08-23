@@ -1,27 +1,28 @@
-package com.vanderkast.blog_server.database.dto;
+package com.vanderkast.blog_server.domain;
 
-import com.vanderkast.blog_server.model.Publication;
-import org.hibernate.annotations.GenericGenerator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "simple_publication")
 public class SimplePublication implements Publication {
-    @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
-
-    @Column(name = "timestamp")
     private Long timestamp;
 
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "content")
     private String content;
 
+    public SimplePublication(String id, Long timestamp, String title, String content) {
+        this.id = id;
+        this.timestamp = timestamp;
+        this.title = title;
+        this.content = content;
+    }
+
+    @Override
+    @JsonProperty("type")
+    public Type getType() {
+        return Type.SIMPLE;
+    }
+
+    @Override
     public String getId() {
         return id;
     }
@@ -30,6 +31,7 @@ public class SimplePublication implements Publication {
         this.id = id;
     }
 
+    @Override
     public Long getTimestamp() {
         return timestamp;
     }
