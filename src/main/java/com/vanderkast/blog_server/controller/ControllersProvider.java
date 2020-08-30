@@ -14,9 +14,9 @@ public class ControllersProvider {
     private DeletionController deletionController;
 
     @SuppressWarnings("unchecked")
-    public <Pub extends Publication> SavingController<Pub> getInstance(Publication.Type type) {
+    public <P extends Publication> SavingController<P> getInstance(Publication.Type type) {
         if (type == Publication.Type.SIMPLE)
-            return (SavingController<Pub>) simple;
+            return (SavingController<P>) simple;
         return null;
     }
 

@@ -2,22 +2,20 @@ package com.vanderkast.blog_server.rest.model;
 
 import com.vanderkast.blog_server.domain.Publication;
 
-public interface Morph<Pub extends Publication> {
+@SuppressWarnings("unchecked")
+public interface Morph<P extends Publication> {
 
-    static Morph<?> getInstance(String type) {
+    static <P extends Publication>  Morph<P> getInstance(String type) {
         return getInstance(Publication.Type.valueOf(type));
     }
 
-    static Morph<?> getInstance(Publication.Type type) {
-        switch (type) {
-            case SIMPLE:
-                return new MorphSimple();
-            default:
-                return null;
-        }
+    static <P extends Publication> Morph<P> getInstance(Publication.Type type) {
+        if (type == Publication.Type.SIMPLE)
+            return (Morph<P>) new MorphSimple();
+        return null;
     }
 
-    Pub handle(CompositePublication composite);
+    P handle(CompositePublication composite);
 
-    CompositePublication handle(Pub publication);
+    CompositePublication handle(P publication);
 }

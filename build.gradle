@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id "org.sonarqube" version "2.7"
 }
 
 group 'com.vanderkast.blog_server'

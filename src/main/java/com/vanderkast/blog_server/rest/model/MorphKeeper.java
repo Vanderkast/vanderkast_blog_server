@@ -19,10 +19,8 @@ public class MorphKeeper implements Morph<Publication> {
 
     @Override
     public CompositePublication handle(Publication publication) {
-        switch (publication.getType()) {
-            case SIMPLE:
-                return simple.handle((SimplePublication) publication);
-        }
+        if (publication.getType() == Publication.Type.SIMPLE)
+            return simple.handle((SimplePublication) publication);
         return null;
     }
 
